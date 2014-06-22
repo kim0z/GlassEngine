@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Kim0z Starter Project</title>
+      <link href="./css/bootstrap.main.css" rel="stylesheet" type="text/css">
+      <style>
+         table,th,td
+         {
+         border:1px solid black;
+         }
+      </style>
+	  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	  <script type="text/javascript">
+
+JSONLocation = function() {
+	var text = $('textarea#text').val(); 
+    var latitude = $('textarea#lat').val(); 
+	var longitude = $('textarea#long').val();
+	var displayName = $('textarea#disName').val();
+	var address = $('textarea#adrs').val();;
+
+    $.ajax({
+        url: "http://kim0z.me/insertLocation/",
+        type: "POST",
+        data: { text: text, latitude: latitude, longitude: longitude, displayName: displayName, address: address },
+        dataType: "json",
+   /*     success: function (result) {
+            switch (result) {
+                case true:
+                    processResponse(result);
+                    break;
+                default:
+                    resultDiv.html(result);
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.status);
+        alert(thrownError);
+        } */
+    });
+};
+
+</script>
+   </head>
+   <body>
+      <h1>Google Glass - APP - Fanadka</h1>
+      <form action="http://kim0z.me/" method="get">
+         <input type="hidden" name="operation" value="insertItem">
+         <br>
+         <button class="btn btn-block btn-danger" type="submit">
+         Authenticate!
+         </button>
+      </form>
+      <br>
+      <br>
+      <form action="http://kim0z.me/insertCard" method="get">
+         <input type="hidden" name="operation" value="insertItem">
+         <textarea name="message" class="span4">Hello World!</textarea>
+         <br>
+         <button class="btn btn-block" type="submit">
+         Insert the above message
+         </button>
+      </form>
+      <br>
+      <br>
+      <form action="http://kim0z.me/insertLocation" method="post">
+         <input type="hidden" name="operation" value="insertItem">
+         <table style="width:400">
+		  <tr>
+               <td>Text</td>
+               <td><textarea id="text" name="latitude" class="span4">Let's meet at CLICK</textarea></td>
+            </tr>
+            <tr>
+               <td>latitude</td>
+               <td><textarea id="lat" name="latitude" class="span4">32.0833</textarea></td>
+            </tr>
+            <tr>
+               <td>longitude</td>
+               <td><textarea id="long" name="longitude" class="span4">34.8000</textarea></td>
+            </tr>
+            <td>displayName</td>
+            <td><textarea id="disName" name="displayName" class="span4">Hacker Dojo</textarea></td>
+            </tr>
+            <tr>
+               <td>address</td>
+               <td><textarea id="adrs" name="address" class="span4">60 ben gvirol tel aviv</textarea></td>
+            </tr>
+         </table>
+         <br>
+         <button class="btn btn-block" onclick="JSONLocation()">
+         Send location!
+         </button>
+      </form>
+      <br>
+	    <button class="btn btn-block" onclick="JSONLocation()">
+         Send location!
+         </button>
+      <br>
+      <!-- 
+         <script src="//js/bootstrap.min.js"></script>
+         -->
+		 
+		 
+		 
+		 
+		 
+		 <div id="upload-area">
+	<div id="preview">
+		<img width="100px" height="100px" src="http://cdn.css-tricks.com/images/icons/128px/zurb.png" id="thumb">
+	</div>
+
+	<form action="/playground/ajax_upload" id="newHotnessForm">
+		<label>Upload a Picture of Yourself</label>
+		<input type="file" size="20" id="imageUpload" class=" ">
+		<button class="button" type="submit">Save</button>
+	</form>
+</div>
+
+  <br>
+    <br>
+	  <br>
+
+
+   </body>
+</html>
