@@ -16,10 +16,6 @@ var oauth2Client = new OAuth2Client(process.env.MIRROR_DEMO_CLIENT_ID,
 
 var app = express();
 
-process.env['MIRROR_DEMO_CLIENT_ID'] = '191268755412.apps.googleusercontent.com';
-process.env['MIRROR_DEMO_CLIENT_SECRET'] = 'WvryQZB9tBtzk9VfMkzdPkQo';
-process.env['MIRROR_DEMO_REDIRECT_URL'] = 'http://kim0z.me/oauth2callback';
-
 // all environments
 app.set('port', 8081);
 app.use(express.logger('dev'));
