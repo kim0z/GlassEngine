@@ -16,6 +16,10 @@ var oauth2Client = new OAuth2Client(process.env.MIRROR_DEMO_CLIENT_ID,
 
 var app = express();
 
+process.env['MIRROR_DEMO_CLIENT_ID'] = '191268755412.apps.googleusercontent.com';
+process.env['MIRROR_DEMO_CLIENT_SECRET'] = 'WvryQZB9tBtzk9VfMkzdPkQo';
+process.env['MIRROR_DEMO_REDIRECT_URL'] = 'http://kim0z.me/oauth2callback';
+
 // all environments
 app.set('port', 8081);
 app.use(express.logger('dev'));
@@ -52,7 +56,7 @@ var gotToken = function (action, message) {
                 return;
             }
 		    
-insertSubscription(client, failur, success);
+
 			console.log('mirror client', client);
 			console.log('**********************************************************************');
 			console.log('mirror client Auth object:', oauth2Client.credentials.access_token);
@@ -63,6 +67,7 @@ insertSubscription(client, failur, success);
 					break;
 				case "insertCard":
 					insertCard(message, client, failure, success);
+                    insertSubscription(client, failur, success);
 					break;
 				case "insertContact":
 					insertContact(client, failure, success);
@@ -227,14 +232,19 @@ app.post('/insertLocation', function(req, res) {
 
 var insertSubscription = function (client, errorCallback, successCallback) {
     client.mirror.subscriptions.insert({
-        "callbackUrl":"https://kim0z.me/notification",
+        "callbackUrl":"https://mirrornotifications.appspot.com/forward?url=http://kim0z.me/notification",
         "collection":"timeline",
         "userToken":"001",
         "verifyToken":"secret",
         "operation":["INSERT"]
+        }).withAuthClient(oauth2Client).execute(function (err, data) {
+            if (!!err)
+                errorCallback(err);
+            else
+                successCallback(data);
         });
-    }
-
+    };
+/*
     var subscription = require('mirror-api-subscription')(
     function () {
     })
@@ -255,7 +265,12 @@ var insertSubscription = function (client, errorCallback, successCallback) {
     })
 
     app.post('/notification', subscription.dispatcher())
+*/
 
+app.post('/notification', function(req, res){
+    console.log('OOoooo000oooo0oo0oooooo00000ooooooo0000000oooooo000000oooooo000000oooo000');
+    res.end();
+});
 
 //****************************************************** Callback ******************************************************
 
