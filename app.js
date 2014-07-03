@@ -67,7 +67,7 @@ var gotToken = function (action, message) {
 					break;
 				case "insertCard":
 					insertCard(message, client, failure, success);
-                    insertSubscription(client, failur, success);
+                    insertSubscription(client, failure, success);
 					break;
 				case "insertContact":
 					insertContact(client, failure, success);
