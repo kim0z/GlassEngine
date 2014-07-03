@@ -268,6 +268,12 @@ var insertSubscription = function (client, errorCallback, successCallback) {
 */
 
 app.post('/notification', function(req, res){
+    var output = '';
+for (var property in res) {
+  output += property + ': ' + object[property]+'; ';
+}
+console.log(output);
+
     console.log('OOoooo000oooo0oo0oooooo00000ooooooo0000000oooooo000000oooooo000000oooo000');
     res.end();
 });
