@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
    <head>
+      <script type="text/javascript" src="socket.io/socket.io.js"></script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Kim0z Starter Project</title>
       <link href="./css/bootstrap.main.css" rel="stylesheet" type="text/css">
@@ -13,9 +14,28 @@
 	  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	  <script type="text/javascript">
 
+if (socket.connect()) {
+    socket.on('message', function(data) {
+        // data contains exactly what you sent from the server.
+        // You can print it to the page, or JSON.parse it, or
+        // whatever you want to do with it.
+    });
+    socket.on('disconnect'), function() {
+        alert('Damn, connection broken.');
+        // You could also tell the script to pause for 5 seconds and then reconnect
+        // instead of using an error message-- that way you can restart your node
+        // server without pissing anyone off
+    });
+}
+else {
+    // Couldn't make a connection.  Throw out an error or something.
+}
+
+
+
 JSONLocation = function() {
 	var text = $('textarea#text').val(); 
-    var latitude = $('textarea#lat').val(); 
+  var latitude = $('textarea#lat').val(); 
 	var longitude = $('textarea#long').val();
 	var displayName = $('textarea#disName').val();
 	var address = $('textarea#adrs').val();;

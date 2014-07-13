@@ -16,6 +16,9 @@ var oauth2Client = new OAuth2Client(process.env.MIRROR_DEMO_CLIENT_ID,
 
 var app = express();
 
+var io = require('socket.io');
+var socket = io.listen(app);
+
 // all environments
 app.set('port', 8081);
 app.use(express.logger('dev'));
