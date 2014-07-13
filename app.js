@@ -291,3 +291,18 @@ app.post('/location', function(req, res){
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+
+
+// ***************************************************** Socket.io ***************************************************** //
+
+socket.on('connection', function(client){
+    client.send('{"success": 1}');
+    client.on('message', function(data) {
+        console.log('Client just sent:', data); 
+    }); 
+    client.on('disconnect', function() {
+        console.log('Bye client <img src='http://www.webdevrefinery.com/forums/public/style_emoticons/<#EMO_DIR#>/sad.gif' class='bbc_emoticon' alt=':(' />');
+    }); 
+});
