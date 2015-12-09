@@ -303,6 +303,6 @@ socket.on('connection', function(client){
         console.log('Client just sent:', data); 
     }); 
     client.on('disconnect', function() {
-        console.log('Bye client <img src='http://www.webdevrefinery.com/forums/public/style_emoticons/<#EMO_DIR#>/sad.gif' class='bbc_emoticon' alt=':(' />');
+        //console.log('Bye client <img src='http://www.webdevrefinery.com/forums/public/style_emoticons/<#EMO_DIR#>/sad.gif' class='bbc_emoticon' alt=':(' />');
     }); 
 });
