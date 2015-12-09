@@ -20,7 +20,7 @@ var io = require('socket.io');
 var socket = io.listen(app);
 
 // all environments
-app.set('port', 8081);
+app.set('port', process.env.PORT);
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
